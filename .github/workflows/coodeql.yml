@@ -1,0 +1,34 @@
+name: "CodeQL Configuration"
+disable-default-queries: false  # Keep default security queries
+
+# Exclude unnecessary files and directories
+paths-ignore:
+  - "node_modules/**"          # Ignore dependencies
+  - "third_party/**"           # Ignore third-party libraries
+  - "vendor/**"                # Ignore vendor files
+  - "build/**"                 # Ignore build artifacts
+  - "dist/**"                  # Ignore distribution files
+  - "generated/**"             # Ignore generated code
+  - "tests/**"                 # Ignore test cases
+  - "**/*.min.js"              # Ignore minified JavaScript files
+  - "**/migrations/**"         # Ignore database migrations
+
+# Enable extended security queries
+queries:
+  - uses: security-and-quality  # Include both security and code quality checks
+  - uses: security-extended     # Enable extended security rules
+  - uses: security-experimental # Test experimental security rules
+
+# Increase verbosity for better debugging
+analysis:
+  extract-trap: true   # Helps identify syntax parsing errors
+  timeout: 300         # Extend timeout for large repositories
+  threads: 2           # Optimize performance
+
+# Include specific language packs if needed
+languages:
+  - javascript
+  - typescript
+  - python
+  - java
+  - csharp
